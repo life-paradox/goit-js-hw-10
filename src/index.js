@@ -54,13 +54,15 @@ function quantityCheck(response) {
 }
 
 function renderSeveralCountries(countries) {
-  for (const country of countries) {
-    const markup = `<li class="country-item">
-    <img class="country-image" src="${country.flags.png}" alt="${country.name.official}" />
-    <p class="country-name">${country.name.common}</p>
-  </li>`;
-    refs.countryList.insertAdjacentHTML('beforeend', markup);
-  }
+  const markup = countries
+    .map(country => {
+      return `<li class="country-item">
+      <img class="country-image" src="${country.flags.png}" alt="${country.name.official}" />
+      <p class="country-name">${country.name.common}</p>
+    </li>`;
+    })
+    .join('');
+  refs.countryList.insertAdjacentHTML('beforeend', markup);
 }
 
 function renderCountry(country) {
